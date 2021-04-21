@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#FFFFFF">
+
+    <ImageButton
+        android:id="@+id/ib_course"
+        android:layout_width="152dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ib_course" />
+
+    <ImageButton
+        android:id="@+id/ib_doctors"
+        android:layout_width="152dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toEndOf="@+id/ib_course"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ib_doctors" />
+
+    <ImageButton
+        android:id="@+id/ib_dynamic"
+        android:layout_width="152dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_course"
+        app:srcCompat="@drawable/ib_dynamics" />
+
+    <ImageButton
+        android:id="@+id/ib_pills"
+        android:layout_width="152dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toEndOf="@+id/ib_dynamic"
+        app:layout_constraintTop_toBottomOf="@+id/ib_doctors"
+        app:srcCompat="@drawable/ib_pills" />
+
+    <ImageButton
+        android:id="@+id/ib_symptom"
+        android:layout_width="152dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_dynamic"
+        app:srcCompat="@drawable/ib_symptom" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

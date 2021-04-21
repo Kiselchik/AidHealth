@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addDoctorButton"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddDoctorActivity">
+
+    <TextView
+        android:id="@+id/textViewNewDoctor"
+        android:layout_width="179dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Добавить врача"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/DocNameEdText"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:hint="Имя врача"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNewDoctor" />
+
+    <EditText
+        android:id="@+id/DocLastNameEdText"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:hint="Фамилия врача"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DocNameEdText" />
+
+    <EditText
+        android:id="@+id/DocAddresEdText"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:hint="Кабинет"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DocLastNameEdText" />
+
+    <EditText
+        android:id="@+id/DocPositionEdText"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:hint="Должность"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DocAddresEdText" />
+
+    <Button
+        android:id="@+id/okDoctor_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="onClikkSaveDoctor"
+        android:text="Добавить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DocPositionEdText" />
+
+    <Button
+        android:id="@+id/readDoctor_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="252dp"
+        android:text="Вывести"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DocPositionEdText" />
+
+    <Button
+        android:id="@+id/dropDoctor_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="228dp"
+        android:text="Удалить таб"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DocPositionEdText" />
+
+    <TextView
+        android:id="@+id/textDoctorTest"
+        android:layout_width="261dp"
+        android:layout_height="273dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/okDoctor_button" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
