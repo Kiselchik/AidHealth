@@ -1,10 +1,11 @@
-package diplom.dev.aidhealth.db
+package diplom.dev.aidhealth.db.handler
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import diplom.dev.aidhealth.db.model.Pill
 
 
 val DATABASE_NAME_PILL = "MyDB"
@@ -16,14 +17,17 @@ val COL_PILL_UNITY = "unity"
 val COL_PILL_MEASUREMENT="measurement"
 var DATABASE_VERSION_PILL = 4
 
-val CREATE_TABLE_PILL = "CREATE TABLE  ${TABLE_NAME_PILL} ("+
-        "${COL_ID_PILL} INTEGER PRIMARY KEY AUTOINCREMENT, ${COL_PILL_TITLE} TEXT, "+
-        "${COL_PILL_PACK} INTEFER, ${COL_PILL_UNITY} REAL,"+
-        "${COL_PILL_MEASUREMENT} TEXT)"
+val CREATE_TABLE_PILL = "CREATE TABLE  $TABLE_NAME_PILL ("+
+        "$COL_ID_PILL INTEGER PRIMARY KEY AUTOINCREMENT, $COL_PILL_TITLE TEXT, "+
+        "$COL_PILL_PACK INTEFER, $COL_PILL_UNITY REAL,"+
+        "$COL_PILL_MEASUREMENT TEXT)"
 
-val SQL_DELETE_TABLE_PILL = "DROP TABLE IF EXISTS ${TABLE_NAME_PILL}"
+val SQL_DELETE_TABLE_PILL = "DROP TABLE IF EXISTS $TABLE_NAME_PILL"
 
-class DbPillsHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_NAME_PILL, null, DATABASE_VERSION_PILL) {
+class DbPillsHandler(var context: Context): SQLiteOpenHelper(context,
+    DATABASE_NAME_PILL, null,
+    DATABASE_VERSION_PILL
+) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(CREATE_TABLE_PILL)

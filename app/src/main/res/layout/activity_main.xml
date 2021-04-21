@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:background="#FFFFFF">
 
     <ImageButton
@@ -58,5 +58,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib_dynamic"
         app:srcCompat="@drawable/ib_symptom" />
+
+    <TextView
+        android:id="@+id/mainFirstLastNameTxt"
+        android:layout_width="267dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

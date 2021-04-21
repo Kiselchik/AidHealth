@@ -1,4 +1,4 @@
-package diplom.dev.aidhealth
+package diplom.dev.aidhealth.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import diplom.dev.aidhealth.db.DbHandler
-import diplom.dev.aidhealth.db.DbPillsHandler
+import diplom.dev.aidhealth.R
+import diplom.dev.aidhealth.db.handler.DbPillsHandler
 import diplom.dev.aidhealth.db.MyDbManager
 import diplom.dev.aidhealth.recycler.CustomRecyclerAdapter
 

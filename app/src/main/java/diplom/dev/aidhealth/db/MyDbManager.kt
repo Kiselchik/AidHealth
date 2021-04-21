@@ -1,10 +1,6 @@
 package diplom.dev.aidhealth.db
 
-import android.content.ContentValues
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import android.widget.Toast
-import diplom.dev.aidhealth.PillsActivity
 
 class MyDbManager(val context: Context) {
    /* val myDbHelper = MyDbHelper(context) //открывает закрывает и тд

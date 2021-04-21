@@ -1,15 +1,16 @@
-package diplom.dev.aidhealth
+package diplom.dev.aidhealth.activity
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import diplom.dev.aidhealth.R
 import diplom.dev.aidhealth.db.*
+import diplom.dev.aidhealth.db.handler.DbHandler
+import diplom.dev.aidhealth.db.model.Doctor
 
 class AddDoctorActivity : AppCompatActivity() {
     private lateinit var docNameEdText: EditText
@@ -46,9 +47,16 @@ class AddDoctorActivity : AppCompatActivity() {
 
     fun setListener() {
         var db = DbHandler(context = this)
+
         okDocButton.setOnClickListener() {
-        var doctor = Doctor(docNameEdText.text.toString(), docLastNameEdText.text.toString(),
-        docPositionEdText.text.toString(), docAddresEdText.text.toString())
+            val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+            val savedEmail = shPref.getString("EMAIL_KEY", "").toString()
+        var doctor = Doctor( //обавить емейд
+            docNameEdText.text.toString(), docLastNameEdText.text.toString(),
+            docPositionEdText.text.toString(), docAddresEdText.text.toString(), savedEmail
+
+
+        )
           //  var db = DbHandler(context = this)
             db.insertDoctor(doctor)
 

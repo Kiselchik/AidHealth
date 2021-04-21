@@ -1,11 +1,12 @@
-package diplom.dev.aidhealth
+package diplom.dev.aidhealth.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import diplom.dev.aidhealth.db.*
-import java.lang.Exception
+import diplom.dev.aidhealth.R
+import diplom.dev.aidhealth.db.handler.DbPillsHandler
+import diplom.dev.aidhealth.db.model.Pill
 
 
 class AddPillsActivity : AppCompatActivity() {
@@ -72,7 +73,8 @@ class AddPillsActivity : AppCompatActivity() {
         insertPillButton.setOnClickListener() {
 
 
-            var db = DbPillsHandler(context = this)
+            var db =
+                DbPillsHandler(context = this)
             var pill = Pill(
                 pillName.text.toString(), Integer.parseInt(pillSizePackEdText.text.toString()),
                 Integer.parseInt(pillNumPackEdText.text.toString()).toFloat(), measurement

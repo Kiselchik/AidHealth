@@ -9,12 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CourseActivity"></activity>
-        <activity android:name=".AddDoctorActivity" />
-        <activity android:name=".DoctorActivity" />
-        <activity android:name=".AddPillsActivity" />
-        <activity android:name=".PillsActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.RegistrationActivity" />
+        <activity android:name=".activity.CourseActivity" />
+        <activity android:name=".activity.AddDoctorActivity" />
+        <activity android:name=".activity.DoctorActivity" />
+        <activity android:name=".activity.AddPillsActivity" />
+        <activity android:name=".activity.PillsActivity" />
+        <activity android:name=".activity.EnterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

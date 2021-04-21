@@ -1,4 +1,4 @@
-package diplom.dev.aidhealth.db
+package diplom.dev.aidhealth.db.model
 
 class Pill {
     var id: Int = 0

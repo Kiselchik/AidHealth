@@ -1,30 +1,34 @@
-package diplom.dev.aidhealth.db
+package diplom.dev.aidhealth.db.handler
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.provider.BaseColumns
 import android.widget.Toast
+import diplom.dev.aidhealth.db.model.Doctor
 
 val DATABASE_NAME = "MyDB"
- val TABLE_NAME = "Doctors"
+ const val TABLE_NAME = "Doctors"
  val COL_ID = "id"
  val COL_DOC_FIRST_NAME = "firstName"
  val COL_DOC_LAST_NAME = "lastName"
  val COL_ADDRESS = "address"
  val COL_POSITION = "position"
- var DATABASE_VERSION = 4
- val CREATE_TABLE = "CREATE TABLE  ${TABLE_NAME} ("+
-           "${COL_ID} INTEGER PRIMARY KEY AUTOINCREMENT, ${COL_DOC_FIRST_NAME} TEXT, "+
-           "${COL_DOC_LAST_NAME} TEXT, ${COL_ADDRESS} TEXT,"+
-           "${COL_POSITION} TEXT)"
+val COL_EMAIL = "email"
+ var DATABASE_VERSION = 5
+val CREATE_TABLE = "CREATE TABLE  $TABLE_NAME ("+
+           "$COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_DOC_FIRST_NAME TEXT, "+
+           "$COL_DOC_LAST_NAME TEXT, $COL_ADDRESS TEXT,"+
+           "$COL_POSITION TEXT, FOREIGN KEY(email) REFERENCES Users(email))"
 
 //const val CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ${DbDoctorClass.TABLE_NAME} ("+
  //       "${BaseColumns._ID} INTEGER PRIMARY KEY, ${DbDoctorClass.COLUMN_DOCTOR_FIRST_NAME_TITLE} TEXT)"
- val SQL_DELETE_TABLE = "DROP TABLE IF EXISTS ${TABLE_NAME}"
+ val SQL_DELETE_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
 
-class DbHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DbHandler(var context: Context): SQLiteOpenHelper(context,
+    DATABASE_NAME, null,
+    DATABASE_VERSION
+) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(CREATE_TABLE)
@@ -45,6 +49,7 @@ class DbHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_NAME, 
             cv.put(COL_DOC_LAST_NAME, doctor.lastName)
             cv.put(COL_ADDRESS, doctor.address)
             cv.put(COL_POSITION, doctor.position)
+            cv.put(COL_EMAIL,doctor.email)
             var result = db.insert(TABLE_NAME, null, cv)
             if (result == -1.toLong())
                 Toast.makeText(context, "FAILED", Toast.LENGTH_SHORT).show()
@@ -69,6 +74,7 @@ class DbHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_NAME, 
                 doctor.lastName = result.getString(result.getColumnIndex(COL_DOC_LAST_NAME))
                 doctor.position = result.getString(result.getColumnIndex(COL_POSITION))
                 doctor.address = result.getString(result.getColumnIndex(COL_ADDRESS))
+                doctor.email = result.getString(result.getColumnIndex(COL_EMAIL))
                 list.add(doctor)
             } while (result.moveToNext())
         }
@@ -85,7 +91,6 @@ class DbHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_NAME, 
     fun dropDoctorTable(){
         val db = this.writableDatabase
         db.execSQL("DROP TABLE " + TABLE_NAME)
-        DATABASE_VERSION = DATABASE_VERSION+1
         db.close()
     }
 
