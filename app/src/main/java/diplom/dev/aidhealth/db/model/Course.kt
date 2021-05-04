@@ -1,20 +1,38 @@
 package diplom.dev.aidhealth.db.model
 
+import android.app.Notification
+import android.provider.ContactsContract
+
 class Course {
     var id: Int = 0
-    //var procedure: Int = null
-    //var medicament: Int = 0
-    //var doctor: Int
-    //var food: String ="" //в курс
+    var email: String = ""
+    var procedure: Int = 0
+    var medicament: Int = 0
+    var doctor: Int = 0
+    var food: String ="" //в курс
     var title: String = ""
     var timeCheckSymptom = ""
-    var timeHealthNotificationn = ""
-    var notification: Int = 0
+    var timeHealthNotification = ""
+    var notification = ""
     var date = ""
     var descr = ""
+    var diagnosisSymptomID: Int = 0 //!!!
 
-    constructor(title: String, pack: Int, unity: Float, measurement: String ) {
-
+    constructor(email: String, procedure: Int, medicament: Int, doctor: Int,
+    food: String, title: String, timeCheckSymptom: String, timeHealthNotification: String, notification: String,
+    date: String, descr: String, diagnosisSymptomID: Int) {
+        this.email = email
+        this.procedure = procedure
+        this.medicament = medicament
+        this.doctor = doctor
+        this.food = food
+        this.title = title
+        this.timeCheckSymptom = timeCheckSymptom
+        this.timeHealthNotification = timeHealthNotification
+        this.notification = notification
+        this.date = date
+        this.descr = descr
+        this.diagnosisSymptomID = diagnosisSymptomID
 
     }
 

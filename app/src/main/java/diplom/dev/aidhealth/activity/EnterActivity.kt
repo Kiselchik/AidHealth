@@ -105,9 +105,19 @@ class EnterActivity : AppCompatActivity() {
         val savedEmail = shPref.getString("EMAIL_KEY", "")
         val savedPassword = shPref.getString("PASSWORD_KEY", null)
         val savedName = shPref.getString("FIRSTNAME_KEY", null)
-        if(savedName!=null){
+        var db = DbHandler(context = this)
+        var data = db.readDoctor()
+            //    && data.size>0
+        if(savedName!=null ){
             val intent = Intent(this@EnterActivity, MainActivity::class.java)
             startActivity(intent)
+        }
+        else{
+            val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        shPref.edit().remove("EMAIL_KEY").commit()
+            shPref.edit().remove("PASSWORD_KEY").commit()
+            shPref.edit().remove("FIRSTNAME_KEY").commit()
+
         }
         Toast.makeText(this, "${savedEmail}  ${savedPassword}", Toast.LENGTH_SHORT).show()
     }

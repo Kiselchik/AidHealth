@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.AddSymptomActivity"></activity>
+        <activity android:name=".activity.SymptomActivity" />
+        <activity android:name=".activity.AddDiagnosisActivity" />
+        <activity android:name=".activity.DiagnosisActivity" />
+        <activity android:name=".activity.CourseHistoryActivity" />
+        <activity android:name=".activity.SetingCoursePointActivity" />
+        <activity android:name=".activity.SetTimeCourseActivity" />
+        <activity android:name=".activity.TuningCourseActivity" />
+        <activity android:name=".activity.AddCourseActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.RegistrationActivity" />
         <activity android:name=".activity.CourseActivity" />
         <activity android:name=".activity.AddDoctorActivity" />

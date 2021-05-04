@@ -1,5 +1,6 @@
 package diplom.dev.aidhealth.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,7 +32,7 @@ class AddPillsActivity : AppCompatActivity() {
         pillSizePackEdText = findViewById(R.id.pillSizePackEdText)
         pillNumPackEdText = findViewById(R.id.pillNumPackEdText)
         textView = findViewById(R.id.textView)
-        unitSpinner = findViewById(R.id.spinner)
+        unitSpinner = findViewById(R.id.pillsSpinner)
         insertPillButton = findViewById(R.id.insert_pill_button)
     }
 
@@ -71,13 +72,15 @@ class AddPillsActivity : AppCompatActivity() {
 
     fun listener() {
         insertPillButton.setOnClickListener() {
-
+            val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+            val savedEmail = shPref.getString("EMAIL_KEY", "").toString()
 
             var db =
                 DbPillsHandler(context = this)
+
             var pill = Pill(
                 pillName.text.toString(), Integer.parseInt(pillSizePackEdText.text.toString()),
-                Integer.parseInt(pillNumPackEdText.text.toString()).toFloat(), measurement
+                Integer.parseInt(pillNumPackEdText.text.toString()).toFloat(), measurement, savedEmail
             )
             //  var db = DbHandler(context = this)
             db.insertPill(pill)
@@ -98,16 +101,5 @@ class AddPillsActivity : AppCompatActivity() {
       myDbManager.closeDb()*/
     }
 
-    fun onClickDelete(view: View) {
-        /*myDbManager.openDb()
-        myDbManager.allPillsDelete()
-        val dataList = myDbManager.readDbData()
-        for (item in dataList) {
-            textView.append(item)
-            textView.append("\n")
-        }
 
-    }
-    */
-    }
 }
