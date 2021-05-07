@@ -36,7 +36,7 @@ class DbStatusPointHandler(var context: Context): SQLiteOpenHelper(context,
     fun insertStatusPoint(statusPoint: StatusPoint) {
 
         val db = writableDatabase
-        // db.execSQL(CREATE_TABLE_COURSE)
+         db.execSQL(CREATE_TABLE_STATUS_POINT)
 
         var cv = ContentValues()
 
@@ -76,6 +76,36 @@ class DbStatusPointHandler(var context: Context): SQLiteOpenHelper(context,
         }
         return list
     }
+    fun getIdStatusPointWait(): MutableList<StatusPoint> {
+            var list: MutableList<StatusPoint> = ArrayList()
+            val db = this.readableDatabase
+
+            val query = "SELECT id FROM " + TABLE_NAME_STATUS_POINT + " WHERE title = 'Ожидание'"
+            try{
+                val result = db.rawQuery(query, null)
+
+                if (result.moveToFirst()) {
+                    do {
+                        var statusPoint = StatusPoint()
+                        statusPoint.id = result.getString(result.getColumnIndex(COL_ID_STATUS_POINT)).toInt()
+                       // statusPoint.title = result.getString(result.getColumnIndex(COL_STATUS_POINT_TITLE))
+
+                        list.add(statusPoint)
+                    } while (result.moveToNext())
+                }
+                result.close()
+                db.close()
+
+            }
+            catch(e: Exception) {
+                Toast.makeText(context, "Таблицы не существует", Toast.LENGTH_SHORT).show()
+            }
+            return list
+    }
+
+
+
+
 /*
     fun dropDoctorTable(){
         val db = this.writableDatabase

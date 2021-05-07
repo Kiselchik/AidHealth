@@ -3,13 +3,18 @@ package diplom.dev.aidhealth.db.model
 class CoursePoint {
     var id: Int= 0
     var courseID: Int= 0
-    var datetime: String=""
+    var day: String = ""
+    var time: String=""
     var statusPointID: Int = 0
 
-    constructor(courseIF: Int, datetime: String, statusPointID: Int) {
+    constructor(courseID: Int, day: String, time: String, statusPointID: Int) {
         this.courseID= courseID
-        this.datetime = datetime
+        this.day = day
+        this.time = time
         this. statusPointID = statusPointID
+    }
+    constructor(){
+
     }
 
 }

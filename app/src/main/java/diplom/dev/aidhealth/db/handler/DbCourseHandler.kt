@@ -53,7 +53,8 @@ class DbCourseHandler(var context: Context): SQLiteOpenHelper(context,
 
     fun clearTableCourse(){
         val db = writableDatabase
-        db.execSQL("DELETE FROM ${TABLE_NAME_COURSE}")
+        db.execSQL("DROP TABLE IF EXISTS ${TABLE_NAME_COURSE}")
+        // db.execSQL("DELETE FROM ${TABLE_NAME_COURSE}")
 
     }
 
@@ -61,7 +62,7 @@ class DbCourseHandler(var context: Context): SQLiteOpenHelper(context,
 
         val db = writableDatabase
      //  db.execSQL("DELETE FROM ${TABLE_NAME_COURSE}")
-      // db.execSQL(CREATE_TABLE_COURSE)
+     db.execSQL(CREATE_TABLE_COURSE)
 
         var cv = ContentValues()
 
@@ -76,7 +77,7 @@ class DbCourseHandler(var context: Context): SQLiteOpenHelper(context,
         cv.put(COL_COURSE_NOTIFICATION, course.notification)
         cv.put(COL_COURSE_DATE, course.date)
         cv.put(COL_COURSE_DESCR, course.descr)
-        cv.put(COL_COURSE_DESCR, course.diagnosisSymptomID)
+        cv.put(COL_COURSE_DIAGNOSIS_SYMPTOM, course.diagnosisSymptomID)
 
 
 

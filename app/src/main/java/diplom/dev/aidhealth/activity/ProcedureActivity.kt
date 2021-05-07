@@ -3,45 +3,40 @@ package diplom.dev.aidhealth.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import diplom.dev.aidhealth.DataRecyclerCourse
-import diplom.dev.aidhealth.Dates
-import diplom.dev.aidhealth.Items
 import diplom.dev.aidhealth.R
 import diplom.dev.aidhealth.db.handler.DbCourseHandler
-import diplom.dev.aidhealth.db.handler.DbHandler
+import diplom.dev.aidhealth.db.handler.DbProcedureHandler
 import diplom.dev.aidhealth.recycler.CourseRecyclerAdapter
-import diplom.dev.aidhealth.recycler.DoctorsRecyclerAdapter
+import diplom.dev.aidhealth.recycler.ProcedureRecyclerAdapter
 
-class CourseActivity : AppCompatActivity() {
+class ProcedureActivity : AppCompatActivity() {
+    private lateinit var toAddProcedureActivityBtn: ImageButton
 
-    private lateinit var addNewCourseButton: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_course)
+        setContentView(R.layout.activity_procedure)
 
-        DataRecyclerCourse.courseID = 0
-        Dates.dates.clear()
-        Items.chooseItem.clear()
-
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewCourse)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerProcedure)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = CourseRecyclerAdapter(fillList())
-        initialize()
+        recyclerView.adapter = ProcedureRecyclerAdapter(fillList())
+        initialise()
         setListener()
     }
 
     fun fillList(): ArrayList<String> {
-        var db = DbCourseHandler(context = this)
-        var data = db.readCourse()
+        var db = DbProcedureHandler(context = this)
+        var data = db.readProcedure()
         var datarecycler = arrayListOf<String>()
         var dataRecyclerId = arrayListOf<Int>()
 
         //textDoc.text =""
         for (i in 0..data.size-1) {
-            datarecycler.add(data.get(i).id.toString() +""+ data.get(i).title)
+            datarecycler.add(data.get(i).title)
             dataRecyclerId.add(data.get(i).id)
         }
         DataRecyclerCourse.dataRecycler = dataRecyclerId
@@ -49,16 +44,13 @@ class CourseActivity : AppCompatActivity() {
 
     }
 
-
-    fun initialize(){
-        addNewCourseButton = findViewById(R.id.addNewCourseButton)
+    fun initialise(){
+        toAddProcedureActivityBtn = findViewById(R.id.toAddProcedureActivityBtn)
     }
-
-    fun setListener(){
-        addNewCourseButton.setOnClickListener(){
-            val intent = Intent(this@CourseActivity, AddCourseActivity::class.java)
+    private fun setListener(){
+        toAddProcedureActivityBtn.setOnClickListener(){
+            val intent = Intent(this@ProcedureActivity, AddProcedureActivity::class.java)
             startActivity(intent)
-
         }
     }
 }

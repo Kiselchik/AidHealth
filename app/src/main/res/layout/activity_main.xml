@@ -72,8 +72,8 @@
         android:id="@+id/toDiagnosysBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
         android:text="Диагнозы"
         app:layout_constraintStart_toEndOf="@+id/ib_symptom"
         app:layout_constraintTop_toBottomOf="@+id/ib_pills" />
@@ -82,8 +82,8 @@
         android:id="@+id/clearCourseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="80dp"
         android:text="Clear Course"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib_symptom" />
@@ -92,8 +92,8 @@
         android:id="@+id/clearPillBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="4dp"
         android:text="Clear pill"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clearCourseBtn" />
@@ -102,8 +102,8 @@
         android:id="@+id/clearDoctorBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Clear doctor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clearPillBtn" />
@@ -112,9 +112,19 @@
         android:id="@+id/clearDiagnosisBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="180dp"
         android:text="Cnlear diagnosis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toDiagnosysBtn" />
+
+    <Button
+        android:id="@+id/toProcedureActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:text="Процедуры"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toDiagnosysBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

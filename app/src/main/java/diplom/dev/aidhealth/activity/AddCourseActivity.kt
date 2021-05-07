@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import diplom.dev.aidhealth.PointCourse
 import diplom.dev.aidhealth.R
 import diplom.dev.aidhealth.db.handler.*
 import diplom.dev.aidhealth.db.model.Course
@@ -21,6 +22,7 @@ class AddCourseActivity : AppCompatActivity() {
     private lateinit var proceduresSpinner: Spinner
     private lateinit var doctorsSpinner: Spinner
     private lateinit var foodsSpinner: Spinner
+    private lateinit var diagnosisSpinner: Spinner
     private lateinit var addCourseButton: Button
     private lateinit var courseNameEdTxt: EditText
     private lateinit var timeChSmptmChBox: CheckBox
@@ -42,7 +44,7 @@ class AddCourseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_course)
         initialize()
     //    checkRow()
-        checkBox()
+        //checkBox()
         spinnerPills()
         spinnerDoctors()
         spinnerFoods()
@@ -62,6 +64,7 @@ class AddCourseActivity : AppCompatActivity() {
         timeHealthChBox = findViewById(R.id.timeHealthChBox)
         courseNtfChBox = findViewById(R.id.courseNtfChBox)
         descrEdTxt = findViewById(R.id.descrEdTxt)
+        diagnosisSpinner = findViewById(R.id.diagnosisSpinner)
 
 
     }
@@ -117,6 +120,7 @@ class AddCourseActivity : AppCompatActivity() {
                 var courseID: Int = 0
                 for(i in 0..selectMaxCourseID.size-1){
                     courseID = selectMaxCourseID.get(i).id
+                  //  PointCourse.courseID = courseID       !!!!!!!!!
                 }
                 for(i in 0..selectIDStatus.size-1){
                     stCourse = selectIDStatus.get(i).id
@@ -124,17 +128,19 @@ class AddCourseActivity : AppCompatActivity() {
                 var courseHistory = CourseHistory(courseID, stCourse, currentDate )
                 dbCourseHistory.insertCourseHistory(courseHistory)
 
-            val intent = Intent(this@AddCourseActivity, TuningCourseActivity::class.java)
+            val intent = Intent(this@AddCourseActivity, CourseActivity::class.java)
             startActivity(intent)
         }else{
                 Toast.makeText(this, "Введите название курса", Toast.LENGTH_SHORT)
             }
         }
         }
-    fun checkBox(){
+  /*  fun checkBox(){
         timeChSmptmChBox.setOnCheckedChangeListener(){buttonView, isChecked ->
         if(isChecked){
             chooseTimeChSmptmChBox = "1"
+        }else{
+            chooseTimeChSmptmChBox = "0"
         }
 
         }
@@ -142,17 +148,24 @@ class AddCourseActivity : AppCompatActivity() {
             if(isChecked){
                 chooseTimeHealthChBox = "1"
             }
+            else{
+                chooseTimeHealthChBox = "0"
+
+            }
 
         }
         courseNtfChBox.setOnCheckedChangeListener(){buttonView, isChecked ->
             if(isChecked){
                 chooseCourseNtfChBox = "1"
+            }else{
+                chooseCourseNtfChBox = "0"
+
             }
 
         }
     }
 
-
+*/
 
 
 
@@ -194,6 +207,10 @@ class AddCourseActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+
     fun spinnerProcedures() {
 
         var db = DbProcedureHandler(context = this)
@@ -302,8 +319,8 @@ class AddCourseActivity : AppCompatActivity() {
             dataSpinnerID.add(data.get(i).id)
         }
 
-        pillsSpinner.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataSpinner)
-        pillsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        diagnosisSpinner.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataSpinner)
+        diagnosisSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }

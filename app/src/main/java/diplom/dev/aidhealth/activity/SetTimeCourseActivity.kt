@@ -27,7 +27,11 @@ class SetTimeCourseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_time_course)
         // Toast.makeText(this, "СОВСЕМ ничего не  выполяется", Toast.LENGTH_SHORT)
-
+        Items.numInDay = 0
+        Items.timeFrom = ""
+        Items.timeTo = ""
+        Items.dose = ""
+        Items.measuring = ""
         initialize()
         val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         // val savedCheck = shPref.getBoolean("CHECK", true)
@@ -109,12 +113,12 @@ class SetTimeCourseActivity : AppCompatActivity() {
           }*/
 
 
-    fun setListener(){
+   private fun setListener(){
         setTimeButton.setOnClickListener() {
 
-            val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+           // val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
-                var Array = intent.getStringArrayListExtra("DATES")
+             //   var Array = intent.getStringArrayListExtra("DATES")
 
                // recyclerView = findViewById(R.id.recyclerViewDatesSetTime)
               //  recyclerView.layoutManager = LinearLayoutManager(this)
@@ -122,7 +126,7 @@ class SetTimeCourseActivity : AppCompatActivity() {
               //  recyclerView.adapter = Array?.let { SetTimeCourseAdapter(it, false) }
                 if (Items.chooseItem.size>0) {
                   //  recyclerView.adapter =  SetTimeCourseAdapter(Array, true)
-                    val intent = Intent(this, SetingCoursePointActivity::class.java)
+                    val intent = Intent(this@SetTimeCourseActivity, SetingCoursePointActivity::class.java)
                    // intent.putExtra("CHOOSEITEM", ItemschooseItem)
                    startActivity(intent)
                 }

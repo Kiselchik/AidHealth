@@ -95,4 +95,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chBoxSymptom" />
 
+    <Button
+        android:id="@+id/toSetingCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="28dp"
+        android:text="Настроить уведомления"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chBoxHealth" />
+
+    <Button
+        android:id="@+id/showPoints"
+        android:layout_width="214dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="8dp"
+        android:text="Показать уведомления"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toSetingCourse" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

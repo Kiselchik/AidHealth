@@ -57,38 +57,17 @@
         app:layout_constraintStart_toEndOf="@+id/pillsSpinner"
         app:layout_constraintTop_toBottomOf="@+id/courseNameEdTxt"></Spinner>
 
-    <CheckBox
-        android:id="@+id/timeChSmptmChBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:text="Напоминать о проверке сиптомов"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseNtfChBox" />
-
-    <CheckBox
-        android:id="@+id/timeHealthChBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Напоминать о проверке самочувствия"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeChSmptmChBox" />
-
     <EditText
         android:id="@+id/descrEdTxt"
         android:layout_width="328dp"
         android:layout_height="162dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="68dp"
         android:ems="10"
         android:hint="Описание"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeHealthChBox" />
+        app:layout_constraintTop_toBottomOf="@+id/doctorsSpinner" />
 
     <Button
         android:id="@+id/addCourseButton"
@@ -100,18 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descrEdTxt" />
 
-    <CheckBox
-        android:id="@+id/courseNtfChBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:text="Напоминать о курсе"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorsSpinner" />
-
     <Spinner
-        android:id="@+id/diagnosSpinner"
+        android:id="@+id/diagnosisSpinner"
         android:layout_width="128dp"
         android:layout_height="26dp"
         android:layout_marginStart="28dp"

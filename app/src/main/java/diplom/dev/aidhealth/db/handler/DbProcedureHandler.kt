@@ -9,7 +9,7 @@ import diplom.dev.aidhealth.db.model.Pill
 import diplom.dev.aidhealth.db.model.Procedure
 
 
-val TABLE_NAME_PROCEDURE = "Pills"
+val TABLE_NAME_PROCEDURE = "Procedure"
 val COL_ID_PROCEDURE = "id"
 val COL_PROCEDURE_EMAIL="email"
 val COL_PROCEDURE_TITLE = "title"
@@ -40,15 +40,16 @@ class DbProcedureHandler(var context: Context): SQLiteOpenHelper(context,
     fun insertProcedure(procedure: Procedure) {
 
         val db = writableDatabase
+        db.execSQL(CREATE_TABLE_PROCEDURE)
         var cv = ContentValues()
         cv.put(COL_PROCEDURE_EMAIL, procedure.email)
         cv.put(COL_PROCEDURE_TITLE, procedure.title)
         cv.put(COL_PROCEDURE_DESCRIPTION, procedure.descr)
         var result = db.insert(TABLE_NAME_PROCEDURE, null, cv)
         if (result == -1.toLong())
-            Toast.makeText(context, "FAILED", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "FAILED procedure", Toast.LENGTH_SHORT).show()
         else
-            Toast.makeText(context, "SUCCESS", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "SUCCESS procedure", Toast.LENGTH_SHORT).show()
     }
 
     fun readProcedure(): MutableList<Procedure> {

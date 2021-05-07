@@ -52,7 +52,7 @@ class SetTimeCourseAdapter(val names: ArrayList<String>, checkButton: Boolean) :
                 // val text: String = (textView)?.getText().toString()
                 holder.itemView.setBackgroundColor(Color.BLUE)
             } else {
-              //  Items.chooseItem.remove("${holder.textView?.text.toString()}")
+                Items.chooseItem.remove("${holder.textView?.text.toString()}")
                 holder.itemView.setBackgroundColor(Color.WHITE)
 
 

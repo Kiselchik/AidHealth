@@ -1,12 +1,15 @@
 package diplom.dev.aidhealth.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import diplom.dev.aidhealth.DataRecyclerCourse
+import diplom.dev.aidhealth.PointCourse
 import diplom.dev.aidhealth.R
 import diplom.dev.aidhealth.db.handler.*
 
@@ -20,16 +23,19 @@ class CourseHistoryActivity : AppCompatActivity() {
     private lateinit var chBoxNotification: CheckBox
     private lateinit var chBoxSymptom: CheckBox
     private lateinit var chBoxHealth: CheckBox
-
+    private lateinit var toSetingCourse: Button
+    private lateinit var showPointBtn: Button
+    var toActivity: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_history)
 
 
-
+        PointCourse.courseID = 0
         initialize()
         setText()
+        setListener()
     }
 
     fun initialize(){
@@ -42,6 +48,8 @@ class CourseHistoryActivity : AppCompatActivity() {
         chBoxNotification = findViewById(R.id.chBoxNotification)
         chBoxSymptom = findViewById(R.id.chBoxSymptom)
         chBoxHealth = findViewById(R.id.chBoxHealth)
+        toSetingCourse = findViewById(R.id.toSetingCourse)
+        showPointBtn = findViewById(R.id.showPoints)
     }
 
 
@@ -49,6 +57,7 @@ class CourseHistoryActivity : AppCompatActivity() {
     fun setText() {
 
         var chooseCourseId = intent.getIntExtra("chooseCourseId", 0)
+
         textViewNameCourse.text = "$chooseCourseId"
         DataRecyclerCourse.courseID = chooseCourseId
 
@@ -59,6 +68,7 @@ class CourseHistoryActivity : AppCompatActivity() {
         //получаем расшифровку. Вся инфа о курсе
         val dbCourse = DbCourseHandler(context = this)
         var dataCourse = dbCourse.getOneCourse()
+        PointCourse.courseID = dataCourse.get(0).id
 
         //получаем расшифровку статуса
         DataRecyclerCourse.statusIDCourse = data.get(0).statusID
@@ -91,11 +101,41 @@ class CourseHistoryActivity : AppCompatActivity() {
         if(dataCourse.get(0).timeHealthNotification == "1")
         { chBoxHealth.toggle()}
 
+        var dbCoursePoint= DbCoursePointHandler(context = this)
+       if( dbCoursePoint.getOneCourse().size ==0 ){
+           toSetingCourse.text = "Настроить уведомления"
+
+       }else{
+           toSetingCourse.text = "Показать уведомления"
+           toActivity = true
+       }
+
+        //выяснить если ли записи в таблиуе для этого курса. Если да - "показать уведомления"
+
 //TODO: если этого курс нет в coursePoint и нажимаете напомнить о курсе, то перевести в SetTimeCoursePoint
 
 
 
 
         Toast.makeText(this, "${chooseCourseId}", Toast.LENGTH_SHORT)
+    }
+
+    private fun setListener(){
+        toSetingCourse.setOnClickListener(){
+            if(toActivity){
+                val intent = Intent(this@CourseHistoryActivity, PointCourseActivity::class.java)
+                startActivity(intent)
+
+            }else{
+                val intent = Intent(this@CourseHistoryActivity, TuningCourseActivity::class.java)
+                startActivity(intent)
+            }
+          //  startActivity(intent)
+        }
+        showPointBtn.setOnClickListener(){
+            val intent = Intent(this@CourseHistoryActivity, PointCourseActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 }

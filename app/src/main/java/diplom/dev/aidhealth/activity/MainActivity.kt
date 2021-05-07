@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var clearPillBtn: Button
     private lateinit var clearDoctorBtn: Button
     private lateinit var clearDiagnosisBtn: Button
+    private lateinit var toProcedureActivity: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         clearPillBtn = findViewById(R.id.clearPillBtn)
         clearDoctorBtn = findViewById(R.id.clearDoctorBtn)
         clearDiagnosisBtn = findViewById(R.id.clearDiagnosisBtn)
+        toProcedureActivity = findViewById(R.id.toProcedureActivity)
 
 
     }
@@ -85,8 +87,10 @@ class MainActivity : AppCompatActivity() {
         clearCourseBtn.setOnClickListener(){
             var dbCourse = DbCourseHandler(context = this)
             var dbCourseHistory = DbCourseHistoryHandler(context = this)
+            var dbCoursePoint = DbCoursePointHandler(context = this)
             dbCourse.clearTableCourse()
             dbCourseHistory.clearTableCourseHistory()
+            dbCoursePoint.clearTableCoursePoint()
         }
 
         clearPillBtn.setOnClickListener(){
@@ -108,6 +112,10 @@ class MainActivity : AppCompatActivity() {
 
             dbDiagnosis.clearTableDiagnosis()
             dbDiagnosisSymptom.clearTableDiagnosisSymptom()
+        }
+        toProcedureActivity.setOnClickListener(){
+            val intent = Intent(this@MainActivity, ProcedureActivity::class.java)
+            startActivity(intent)
         }
 
     }
