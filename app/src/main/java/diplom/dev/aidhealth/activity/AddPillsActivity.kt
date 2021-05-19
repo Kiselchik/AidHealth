@@ -38,7 +38,7 @@ class AddPillsActivity : AppCompatActivity() {
 
     fun spinner() {
 
-        var units = arrayOf<String>("мл", "мг")
+        var units = arrayOf<String>("мл", "мг", "шт")
         /*  var adapter =
         ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

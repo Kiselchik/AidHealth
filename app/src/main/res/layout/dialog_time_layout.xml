@@ -27,7 +27,7 @@
             android:background="@android:color/white"
             android:clickable="true"
             android:text="Быстрая"
-            android:textColor="#5DBCD2"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
         <Button
@@ -37,7 +37,7 @@
             android:background="@android:color/white"
             android:clickable="true"
             android:text="Ручная"
-            android:textColor="#5DBCD2"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>

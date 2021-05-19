@@ -23,7 +23,7 @@ import diplom.dev.aidhealth.recycler.DoctorsRecyclerAdapter
 class DiagnosisActivity : AppCompatActivity() {
 
     private lateinit var toAddDiagnosisBtn: ImageButton
-    private lateinit var textView: TextView
+    private lateinit var textViewSymptoms: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +66,8 @@ class DiagnosisActivity : AppCompatActivity() {
                 dataSymptomTitleForDiagnosis =  dbSymptom.getOneSymptom()
                 symptomTitleForDiagnosis.add(dataSymptomTitleForDiagnosis.get(0).title)
             }
-            dataRecycler.add(dataDiagnosis.get(i).diagnosisTitle+"\n "+symptomTitleForDiagnosis.joinToString())
+           // dataRecycler.add(dataDiagnosis.get(i).diagnosisTitle+"\n "+symptomTitleForDiagnosis.joinToString())
+            dataRecycler.add(dataDiagnosis.get(i).diagnosisTitle)
 
 
         }
@@ -77,7 +78,7 @@ class DiagnosisActivity : AppCompatActivity() {
 
     fun initialise(){
         toAddDiagnosisBtn = findViewById(R.id.toAddDiagnosisBtn)
-        textView = findViewById(R.id.textView3)
+        textViewSymptoms = findViewById(R.id.textViewSymptoms)
     }
 
    private fun setListener(){
@@ -89,5 +90,10 @@ class DiagnosisActivity : AppCompatActivity() {
             val intent = Intent(this@DiagnosisActivity, AddDiagnosisActivity::class.java)
             startActivity(intent)
         }
+
+       textViewSymptoms.setOnClickListener(){
+           val intent = Intent(this@DiagnosisActivity, SymptomActivity::class.java)
+           startActivity(intent)
+       }
     }
 }

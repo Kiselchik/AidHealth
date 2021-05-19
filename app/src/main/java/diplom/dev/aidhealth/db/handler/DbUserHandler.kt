@@ -53,11 +53,11 @@ class DbUserHandler(var context: Context): SQLiteOpenHelper(context,
             Toast.makeText(context, "SUCCESS", Toast.LENGTH_SHORT).show()
     }
 
-    fun readUser(): MutableList<User> {
+    fun readUser(regEmail: String): MutableList<User> {
         var list: MutableList<User> = ArrayList()
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM " + TABLE_NAME_USER
+        val query = "SELECT * FROM " + TABLE_NAME_USER + "WHERE email = $regEmail "
         try {
 
             val result = db.rawQuery(query, null)

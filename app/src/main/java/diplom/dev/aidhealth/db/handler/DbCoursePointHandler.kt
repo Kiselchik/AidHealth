@@ -6,10 +6,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import diplom.dev.aidhealth.DataRecyclerCourse
-import diplom.dev.aidhealth.db.model.Course
-import diplom.dev.aidhealth.db.model.CourseHistory
-import diplom.dev.aidhealth.db.model.CoursePoint
-import diplom.dev.aidhealth.db.model.StatusPoint
+import diplom.dev.aidhealth.PointCourse
+import diplom.dev.aidhealth.User
+import diplom.dev.aidhealth.db.model.*
 
 
 val TABLE_NAME_COURSE_POINT = "CoursePoint"
@@ -99,6 +98,17 @@ class DbCoursePointHandler(var context: Context): SQLiteOpenHelper(context,
         return list
     }
 
+    fun updateStatusPoint(statusPoint: Int){
+        val db = writableDatabase
+        try{
+            db.execSQL("UPDATE ${TABLE_NAME_STATUS_POINT} SET " +
+                    "${COL_COURSE_POINT_STATUS} = ${statusPoint} " +
+                    "WHERE ${COL_COURSE_POINT_ID} = ${PointCourse.pointID}")
+        }
+        catch (e: Exception) {
+            Toast.makeText(context, "Проблемки с обновлением статуса", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 
 
@@ -139,6 +149,62 @@ class DbCoursePointHandler(var context: Context): SQLiteOpenHelper(context,
         return list
 
     }
+
+    fun getCourseForUser(): MutableList<CoursePoint> {
+        var list: MutableList<CoursePoint> = ArrayList()
+        val db = this.readableDatabase
+      /*  val query = " ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_DAY}, " +
+                "${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_TIME}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_courseID}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_ID}" +
+                " FROM ${TABLE_NAME_COURSE_POINT}  " +
+                "WHERE $COL_COURSE_POINT_courseID = ${User.courseId}}"*/
+
+      val query = "SELECT ${COL_COURSE_POINT_DAY}, " +
+                "${COL_COURSE_POINT_TIME}, ${COL_COURSE_POINT_courseID}, ${COL_COURSE_POINT_ID} " +
+                " FROM ${TABLE_NAME_COURSE_POINT}  " +
+                "WHERE ( ${COL_COURSE_POINT_STATUS} = ${diplom.dev.aidhealth.StatusPoint.stWaitID} OR " +
+                " ${COL_COURSE_POINT_STATUS} = ${diplom.dev.aidhealth.StatusPoint.stPostponedID}) " +
+                "AND $COL_COURSE_POINT_courseID = ${User.courseId} "
+
+       /* val query = "SELECT ${TABLE_NAME_STATUS_POINT}.${COL_STATUS_COURSE_TITLE}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_DAY}, " +
+                "${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_TIME}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_courseID}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_ID}" +
+                " FROM ${TABLE_NAME_COURSE_POINT} JOIN ${TABLE_NAME_STATUS_POINT} " +
+                " ON ${TABLE_NAME_STATUS_POINT}.${COL_ID_STATUS_POINT} = ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_STATUS} " +
+                "WHERE  ${TABLE_NAME_STATUS_POINT}.${COL_ID_STATUS_POINT} = ${diplom.dev.aidhealth.StatusPoint.stWaitID} AND " +
+                "${TABLE_NAME_STATUS_POINT}.${COL_ID_STATUS_POINT} = ${diplom.dev.aidhealth.StatusPoint.stPostponedID} "*/
+        //   val query = "SELECT * FROM " + TABLE_NAME_COURSE_POINT
+
+            val result = db.rawQuery(query, null)
+
+            if (result.moveToFirst()) {
+                do {
+                    var coursePoint = CoursePoint()
+
+                   // courseWithStatus.statusTitle = result.getString(result.getColumnIndex(COL_STATUS_COURSE_TITLE))
+                    coursePoint.day = result.getString(result.getColumnIndex(COL_COURSE_POINT_DAY))
+                    coursePoint.time = result.getString(result.getColumnIndex(COL_COURSE_POINT_TIME))
+                    coursePoint.courseID = result.getString(result.getColumnIndex(COL_COURSE_POINT_courseID)).toInt()
+                    coursePoint.id = result.getString(result.getColumnIndex(COL_COURSE_POINT_ID)).toInt()
+
+                    list.add(coursePoint)
+                } while (result.moveToNext())
+            }
+            result.close()
+            db.close()
+
+        return list
+
+    }
+
+   fun getPointsID(){
+
+/*
+       val query = "SELECT ${TABLE_NAME_STATUS_POINT}.${COL_STATUS_COURSE_TITLE}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_DAY}, " +
+               "${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_TIME}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_courseID}, ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_ID}" +
+               " FROM ${TABLE_NAME_COURSE_POINT} JOIN ${TABLE_NAME_STATUS_POINT} " +
+               " ON ${TABLE_NAME_STATUS_POINT}.${COL_ID_STATUS_POINT} = ${TABLE_NAME_COURSE_POINT}.${COL_COURSE_POINT_STATUS} " +
+               "WHERE "*/
+
+   }
 }
 /*
     fun dropDoctorTable(){

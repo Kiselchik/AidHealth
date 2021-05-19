@@ -13,7 +13,7 @@ class CustomRecyclerAdapter(private val names: ArrayList<String>) :
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var textView: TextView? = null
         init {
-            textView = itemView.findViewById(R.id.textViewPills)
+            textView = itemView.findViewById(R.id.textViewDiagnosis)
         }
     }
 

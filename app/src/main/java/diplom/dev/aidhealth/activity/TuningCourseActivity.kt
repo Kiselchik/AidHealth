@@ -54,7 +54,7 @@ class TuningCourseActivity : AppCompatActivity() {
     fun calendar() {
 
         calendar.setOnDateChangeListener { calendar, i, i2, i3 ->
-            dates.add("$i3/$i2/$i")
+            dates.add("$i3/${i2+1}/$i")
            //dateschoise.put("$i3/$i2/$i", false)
 
             Toast.makeText(this, "${dates.size}", Toast.LENGTH_SHORT).show()
@@ -70,7 +70,7 @@ class TuningCourseActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this@TuningCourseActivity)
             builder.setTitle("Тайтл")
             builder.setMessage("Выберети тип настройки времени")
-            builder.setPositiveButton("Ручной"){dialog, which ->
+            builder.setPositiveButton("Быстрый"){dialog, which ->
 
                 val shPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
                 val editor = shPref.edit()
@@ -86,15 +86,23 @@ class TuningCourseActivity : AppCompatActivity() {
                   d.add(dates[i])
                }
                intent.putExtra("DATES", d)
+                intent.putExtra("MODE", true)
 
                  startActivity(intent)
                // SetTimeCourseActivity().setDates(dates)
 
             }
-            builder.setNegativeButton("Быстрый"){dialog, which ->
+            builder.setNegativeButton("Ручной"){dialog, which ->
 
                 val intent = Intent(this@TuningCourseActivity, SetTimeCourseActivity::class.java)
-                   startActivity(intent)
+                intent.putExtra("MODE", false)
+                var d = arrayListOf<String>()
+                //  dates.add("hhh from dates")
+                for(i in 0..dates.size-1){
+                    d.add(dates[i])
+                }
+                intent.putExtra("DATES", d)
+                startActivity(intent)
             }
             builder.setNeutralButton("Отмена"){_,_->
             }

@@ -32,12 +32,12 @@ class SymptomRecyclerAdapter ( private val names: ArrayList<String>) :
     override fun onBindViewHolder(holder: MyViewHolderSymptom, position: Int) {
         holder.textView?.text = names[position]
         holder.itemView.setOnClickListener(){
-            var chooseCourseId = DataRecyclerCourse.dataRecycler[position]
+           // var chooseCourseId = DataRecyclerCourse.dataRecycler[position]
             //  Toast.makeText(holder.itemView.context, "${chooseCourseId}", Toast.LENGTH_SHORT)
 
-            val intent = Intent(holder.itemView.context, CourseHistoryActivity::class.java)
+           /* val intent = Intent(holder.itemView.context, CourseHistoryActivity::class.java)
             intent.putExtra("chooseCourseId", chooseCourseId)
-            holder.itemView.context.startActivity(intent)
+            holder.itemView.context.startActivity(intent)*/
         }
 
     }

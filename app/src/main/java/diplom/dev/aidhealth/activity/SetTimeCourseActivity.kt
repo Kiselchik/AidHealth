@@ -126,9 +126,14 @@ class SetTimeCourseActivity : AppCompatActivity() {
               //  recyclerView.adapter = Array?.let { SetTimeCourseAdapter(it, false) }
                 if (Items.chooseItem.size>0) {
                   //  recyclerView.adapter =  SetTimeCourseAdapter(Array, true)
+                    var dataIntent = intent.getBooleanExtra("MODE", false)
+                    if(dataIntent){
                     val intent = Intent(this@SetTimeCourseActivity, SetingCoursePointActivity::class.java)
-                   // intent.putExtra("CHOOSEITEM", ItemschooseItem)
-                   startActivity(intent)
+                   startActivity(intent)}
+                    else{
+                        val intent = Intent(this@SetTimeCourseActivity, ManualSetingCoursePointActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
             else{
                     Toast.makeText(this, "пустой", Toast.LENGTH_SHORT).show()

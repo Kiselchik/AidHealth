@@ -3,19 +3,19 @@ package diplom.dev.aidhealth.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import diplom.dev.aidhealth.DataRecyclerCourse
 import diplom.dev.aidhealth.R
-import diplom.dev.aidhealth.db.handler.DbCourseHandler
 import diplom.dev.aidhealth.db.handler.DbProcedureHandler
-import diplom.dev.aidhealth.recycler.CourseRecyclerAdapter
 import diplom.dev.aidhealth.recycler.ProcedureRecyclerAdapter
 
 class ProcedureActivity : AppCompatActivity() {
     private lateinit var toAddProcedureActivityBtn: ImageButton
+    private lateinit var textViewPills: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +46,15 @@ class ProcedureActivity : AppCompatActivity() {
 
     fun initialise(){
         toAddProcedureActivityBtn = findViewById(R.id.toAddProcedureActivityBtn)
+        textViewPills = findViewById(R.id.textViewDiagnosis)
     }
     private fun setListener(){
         toAddProcedureActivityBtn.setOnClickListener(){
             val intent = Intent(this@ProcedureActivity, AddProcedureActivity::class.java)
+            startActivity(intent)
+        }
+        textViewPills.setOnClickListener(){
+            val intent = Intent(this@ProcedureActivity, PillsActivity::class.java)
             startActivity(intent)
         }
     }

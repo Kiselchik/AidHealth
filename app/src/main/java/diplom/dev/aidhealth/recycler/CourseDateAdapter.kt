@@ -27,7 +27,7 @@ class CourseDateAdapter(private var dates: MutableList<String>) :
             itemView.setOnClickListener(){
                 val pos: Int = adapterPosition
                 val text: String = (textView)?.getText().toString()
-                itemView.setBackgroundColor(Color.RED)
+               // itemView.setBackgroundColor(Color.RED)
               //  Toast.makeText(itemView.context, "Нажали $pos, ${text}", Toast.LENGTH_SHORT).show()
             }
 

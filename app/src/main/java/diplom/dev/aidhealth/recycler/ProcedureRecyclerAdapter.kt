@@ -16,7 +16,7 @@ class ProcedureRecyclerAdapter(private var dates: MutableList<String>) :
         var textView: TextView? = null
         var choise = false
         init {
-            textView = itemView.findViewById(R.id.textCourseDate)
+            textView = itemView.findViewById(R.id.textViewDiagnosis)
             itemView.setOnClickListener(){
                 val pos: Int = adapterPosition
                 val text: String = (textView)?.getText().toString()
@@ -38,7 +38,7 @@ class ProcedureRecyclerAdapter(private var dates: MutableList<String>) :
         viewType: Int
     ): ProcedureRecyclerAdapter.MyViewHolderProcedure {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_course_date_layout, parent, false)
+            .inflate(R.layout.card_layout, parent, false)
         // notifyDataSetChanged()
 
         return ProcedureRecyclerAdapter.MyViewHolderProcedure(itemView)

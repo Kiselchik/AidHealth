@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".notification.NotificationCourse"
+            />
+        <activity android:name=".activity.UserSetStatusNotificationCourseActivity"></activity>
+        <activity android:name=".activity.ManualSetingCoursePointActivity"></activity>
         <activity android:name=".activity.AddProcedureActivity"></activity>
         <activity android:name=".activity.ProcedureActivity" />
         <activity android:name=".activity.PointCourseActivity" />

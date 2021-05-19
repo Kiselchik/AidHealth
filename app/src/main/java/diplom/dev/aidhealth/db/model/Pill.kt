@@ -1,12 +1,13 @@
 package diplom.dev.aidhealth.db.model
 
 class Pill {
-    var id: Int = 0
-    var email: String = ""
-    var title: String = ""
-    var pack: Int = 0
-    var unity: Float = 0f //Float
-    var measurement: String = ""
+    var id: Int = 0//
+    var email: String = ""//
+    var title: String = ""//
+    var pack: Int = 0//
+    var unity: Float = 0f //
+    var measurement: String = "" //добавить
+    //добавить сюда описание (для чего лекарство)
    // var lost: String = "" //Float
 
     constructor(title: String, pack: Int, unity: Float, measurement: String, email: String ) {

@@ -41,7 +41,8 @@ class CourseActivity : AppCompatActivity() {
 
         //textDoc.text =""
         for (i in 0..data.size-1) {
-            datarecycler.add(data.get(i).id.toString() +""+ data.get(i).title)
+          //  datarecycler.add(data.get(i).id.toString() +""+ data.get(i).title)
+            datarecycler.add(data.get(i).title)
             dataRecyclerId.add(data.get(i).id)
         }
         DataRecyclerCourse.dataRecycler = dataRecyclerId
@@ -51,7 +52,7 @@ class CourseActivity : AppCompatActivity() {
 
 
     fun initialize(){
-        addNewCourseButton = findViewById(R.id.addNewCourseButton)
+        addNewCourseButton = findViewById(R.id.addCourseButton)
     }
 
     fun setListener(){

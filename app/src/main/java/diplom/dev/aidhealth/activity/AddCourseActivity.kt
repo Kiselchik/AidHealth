@@ -60,9 +60,9 @@ class AddCourseActivity : AppCompatActivity() {
         foodsSpinner = findViewById(R.id.foodsSpinner)
         addCourseButton = findViewById(R.id.addCourseButton)
         courseNameEdTxt = findViewById(R.id.courseNameEdTxt)
-        timeChSmptmChBox = findViewById(R.id.timeChSmptmChBox)
-        timeHealthChBox = findViewById(R.id.timeHealthChBox)
-        courseNtfChBox = findViewById(R.id.courseNtfChBox)
+     //   timeChSmptmChBox = findViewById(R.id.timeChSmptmChBox)
+     //   timeHealthChBox = findViewById(R.id.timeHealthChBox)
+     //   courseNtfChBox = findViewById(R.id.courseNtfChBox)
         descrEdTxt = findViewById(R.id.descrEdTxt)
         diagnosisSpinner = findViewById(R.id.diagnosisSpinner)
 

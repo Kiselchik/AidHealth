@@ -10,22 +10,22 @@
         android:id="@+id/regPasswordEdTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="пароль"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTextView"
+        app:layout_constraintStart_toStartOf="@+id/registrationTextView"
         app:layout_constraintTop_toBottomOf="@+id/regEmailEdTxt" />
 
     <TextView
         android:id="@+id/registrationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
         android:layout_marginTop="44dp"
         android:text="Регистрация"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,56 +33,61 @@
         android:id="@+id/regEmailEdTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="email"
         android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTextView"
+        app:layout_constraintStart_toStartOf="@+id/registrationTextView"
         app:layout_constraintTop_toBottomOf="@+id/registrationTextView" />
 
     <Button
         android:id="@+id/regUserButton"
+        style="@style/ButtonAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Зарегистрироваться"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorTextIcons"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTextView"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="@+id/registrationTextView"
         app:layout_constraintTop_toBottomOf="@+id/regLastNameEdTxt" />
 
     <EditText
         android:id="@+id/regPasswordCheckEdTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="check password"
+        android:hint="проверка пароля"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTextView"
+        app:layout_constraintStart_toStartOf="@+id/registrationTextView"
         app:layout_constraintTop_toBottomOf="@+id/regPasswordEdTxt" />
 
     <EditText
         android:id="@+id/regFirstNameEdTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Имя"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="имя"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTextView"
+        app:layout_constraintStart_toStartOf="@+id/registrationTextView"
         app:layout_constraintTop_toBottomOf="@+id/regPasswordCheckEdTxt" />
 
     <EditText
         android:id="@+id/regLastNameEdTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Фамилия"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="фамилия"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTextView"
+        app:layout_constraintStart_toStartOf="@+id/registrationTextView"
         app:layout_constraintTop_toBottomOf="@+id/regFirstNameEdTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import diplom.dev.aidhealth.Doctor
 import diplom.dev.aidhealth.R
 import diplom.dev.aidhealth.db.handler.DbHandler
 import diplom.dev.aidhealth.db.MyDbManager
@@ -18,10 +19,11 @@ class DoctorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor)
+        Doctor.doctorsListID.clear()
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerViewDoctor)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = DoctorsRecyclerAdapter(fillList())
+        recyclerView.adapter = DoctorsRecyclerAdapter(fillList(), this)
         initialize()
     }
 
@@ -36,9 +38,11 @@ class DoctorActivity : AppCompatActivity() {
 
         //textDoc.text =""
         for (i in 0..data.size-1) {
-            datarecycler.add(data.get(i).id.toString() + " " + data.get(i).firstName + data.get(i).lastName +
-                        data.get(i).position + data.get(i).address
-            )
+           /* datarecycler.add(data.get(i).id.toString() + " " + data.get(i).firstName + data.get(i).lastName +
+                        data.get(i).position + data.get(i).address)*/
+            datarecycler.add(data.get(i).firstName + " " +data.get(i).lastName + "\n (" +
+                    data.get(i).position + ") \n" +data.get(i).address)
+            Doctor.doctorsListID.add(data.get(i).id)
         }
         return datarecycler
 

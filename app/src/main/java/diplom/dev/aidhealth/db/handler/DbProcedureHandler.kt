@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import diplom.dev.aidhealth.User
 import diplom.dev.aidhealth.db.model.Pill
 import diplom.dev.aidhealth.db.model.Procedure
 
@@ -56,7 +57,7 @@ class DbProcedureHandler(var context: Context): SQLiteOpenHelper(context,
         var list: MutableList<Procedure> = ArrayList()
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM " + TABLE_NAME_PROCEDURE
+        val query = "SELECT * FROM " + TABLE_NAME_PROCEDURE +" WHERE email = '${User.email}' "
         try{
             val result = db.rawQuery(query, null)
 

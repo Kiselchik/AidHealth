@@ -3,7 +3,7 @@ package diplom.dev.aidhealth.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
@@ -12,6 +12,7 @@ import diplom.dev.aidhealth.DataRecyclerCourse
 import diplom.dev.aidhealth.PointCourse
 import diplom.dev.aidhealth.R
 import diplom.dev.aidhealth.db.handler.*
+import diplom.dev.aidhealth.db.model.Course
 
 class CourseHistoryActivity : AppCompatActivity() {
     private lateinit var textViewNameCourse: TextView
@@ -25,7 +26,13 @@ class CourseHistoryActivity : AppCompatActivity() {
     private lateinit var chBoxHealth: CheckBox
     private lateinit var toSetingCourse: Button
     private lateinit var showPointBtn: Button
+    private lateinit var saveChBox: Button
     var toActivity: Boolean = false
+    var chooseTimeChSmptmChBox = "0"
+    var chooseTimeHealthChBox = "0"
+    var chooseCourseNtfChBox = "0"
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +41,7 @@ class CourseHistoryActivity : AppCompatActivity() {
 
         PointCourse.courseID = 0
         initialize()
+        checkBoxListener()
         setText()
         setListener()
     }
@@ -49,7 +57,8 @@ class CourseHistoryActivity : AppCompatActivity() {
         chBoxSymptom = findViewById(R.id.chBoxSymptom)
         chBoxHealth = findViewById(R.id.chBoxHealth)
         toSetingCourse = findViewById(R.id.toSetingCourse)
-        showPointBtn = findViewById(R.id.showPoints)
+        saveChBox = findViewById(R.id.saveChBox)
+       // saveChBox = findViewById(R.id.saveChBox)
     }
 
 
@@ -120,6 +129,62 @@ class CourseHistoryActivity : AppCompatActivity() {
         Toast.makeText(this, "${chooseCourseId}", Toast.LENGTH_SHORT)
     }
 
+    private fun checkBoxListener(){
+        val dbCourse = DbCourseHandler(context = this)
+        var dataCourse = dbCourse.getOneCourse()
+        chBoxSymptom.setOnCheckedChangeListener(){buttonView, isChecked ->
+            if(isChecked){
+                chooseTimeChSmptmChBox = "1"
+            }else{
+                chooseTimeChSmptmChBox = "0"
+            }
+
+            if( dataCourse.size>0 && (
+                !chooseTimeChSmptmChBox.equals(dataCourse.get(0).timeCheckSymptom))){
+                saveChBox.visibility = View.VISIBLE
+
+            }
+
+        }
+        chBoxHealth.setOnCheckedChangeListener(){buttonView, isChecked ->
+            if(isChecked){
+                chooseTimeHealthChBox = "1"
+            }
+            else{
+                chooseTimeHealthChBox = "0"
+
+            }
+            if(dataCourse.size>0 && (
+                !(chooseTimeHealthChBox.equals(dataCourse.get(0).timeHealthNotification)))){
+                saveChBox.visibility = View.VISIBLE
+
+            }
+
+
+        }
+        chBoxNotification.setOnCheckedChangeListener(){buttonView, isChecked ->
+            if(isChecked){
+                chooseCourseNtfChBox = "1"
+            }else{
+                chooseCourseNtfChBox = "0"
+
+            }
+            if(dataCourse.size>0 &&
+                !(chooseCourseNtfChBox.equals(dataCourse.get(0).notification))){
+                saveChBox.visibility = View.VISIBLE
+
+            }
+            else{
+                Toast.makeText(this, "sgdfd", Toast.LENGTH_SHORT)
+            }
+
+        }
+
+
+
+    }
+
+
     private fun setListener(){
         toSetingCourse.setOnClickListener(){
             if(toActivity){
@@ -132,8 +197,11 @@ class CourseHistoryActivity : AppCompatActivity() {
             }
           //  startActivity(intent)
         }
-        showPointBtn.setOnClickListener(){
-            val intent = Intent(this@CourseHistoryActivity, PointCourseActivity::class.java)
+        saveChBox.setOnClickListener(){
+            val dbCourse = DbCourseHandler(context = this)
+
+            dbCourse.updateChBox(chooseTimeChSmptmChBox,chooseTimeHealthChBox, chooseCourseNtfChBox )
+            val intent = Intent(this@CourseHistoryActivity, CourseActivity::class.java)
 
             startActivity(intent)
         }

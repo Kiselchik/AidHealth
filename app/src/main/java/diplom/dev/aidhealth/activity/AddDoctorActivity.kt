@@ -17,10 +17,10 @@ class AddDoctorActivity : AppCompatActivity() {
     private lateinit var docLastNameEdText: EditText
     private lateinit var docAddresEdText: EditText
     private lateinit var docPositionEdText: EditText
-    private lateinit var textDocTest: TextView
+  //  private lateinit var textDocTest: TextView
     private lateinit var okDocButton: Button
-    private lateinit var readDoctorButton: Button
-    private lateinit var dropDoctorButton: Button
+ //   private lateinit var readDoctorButton: Button
+//    private lateinit var dropDoctorButton: Button
     val myDbManager = MyDbManager(this)
     var db: SQLiteDatabase? = null
 
@@ -38,10 +38,10 @@ class AddDoctorActivity : AppCompatActivity() {
         docLastNameEdText = findViewById(R.id.DocLastNameEdText)
         docAddresEdText = findViewById(R.id.DocAddresEdText)
         docPositionEdText = findViewById(R.id.DocPositionEdText)
-       textDocTest = findViewById(R.id.textDoctorTest)
+   //    textDocTest = findViewById(R.id.textDoctorTest)
        okDocButton = findViewById(R.id.okDoctor_button)
-       readDoctorButton = findViewById(R.id.readDoctor_button)
-       dropDoctorButton = findViewById(R.id.dropDoctor_button)
+   //    readDoctorButton = findViewById(R.id.readDoctor_button)
+   //    dropDoctorButton = findViewById(R.id.dropDoctor_button)
 
     }
 
@@ -62,7 +62,7 @@ class AddDoctorActivity : AppCompatActivity() {
 
 
         }
-
+/*
         readDoctorButton.setOnClickListener(){
             var data = db.readDoctor()
             textDocTest.text =""
@@ -74,7 +74,7 @@ class AddDoctorActivity : AppCompatActivity() {
 
         dropDoctorButton.setOnClickListener(){
             db.dropDoctorTable()
-        }
+        }*/
     }
 
 

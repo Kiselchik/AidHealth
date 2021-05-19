@@ -16,14 +16,14 @@ class DiagnosisRecyclerAdapter(private val names: ArrayList<String>) :
     class MyViewHolderDiagnosis(itemView: View) : RecyclerView.ViewHolder(itemView){
         var textView: TextView? = null
         init {
-            textView = itemView.findViewById(R.id.textViewCourse)
+            textView = itemView.findViewById(R.id.textViewDiagnosis)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderDiagnosis {
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_course_layout, parent, false)
+                .inflate(R.layout.card_diagnosis_layout, parent, false)
         return MyViewHolderDiagnosis(itemView)
     }
 

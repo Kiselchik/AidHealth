@@ -2,10 +2,10 @@ package diplom.dev.aidhealth.db.model
 
 class User {
 
-    var email: String = ""
-    var password: String = ""
-    var firstName: String = ""
-    var lastName: String = ""
+    var email: String = ""//
+    var password: String = ""//
+    var firstName: String = ""//
+    var lastName: String = ""//
 
     constructor(email: String, password: String, firstName: String, lastName: String){
         this.email = email

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import diplom.dev.aidhealth.DataRecyclerCourse
 import diplom.dev.aidhealth.DataRecyclerDiagnosis
+import diplom.dev.aidhealth.User
 import diplom.dev.aidhealth.db.model.Course
 import diplom.dev.aidhealth.db.model.Diagnosis
 import diplom.dev.aidhealth.db.model.DiagnosisWithSymptom
@@ -74,7 +75,7 @@ class DbSymptomHandler(var context: Context): SQLiteOpenHelper(context,
         var list: MutableList<Symptom> = ArrayList()
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM " + TABLE_NAME_SYMPTOM
+        val query = "SELECT * FROM " + TABLE_NAME_SYMPTOM + " WHERE email = '${User.email}' "
         try {
             val result = db.rawQuery(query, null)
 

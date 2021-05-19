@@ -6,17 +6,17 @@ import android.provider.ContactsContract
 class Course {
     var id: Int = 0
     var email: String = ""
-    var procedure: Int = 0
-    var medicament: Int = 0
-    var doctor: Int = 0
-    var food: String ="" //в курс
-    var title: String = ""
-    var timeCheckSymptom = ""
-    var timeHealthNotification = ""
-    var notification = ""
+    var procedure: Int = 0 //
+    var medicament: Int = 0 //
+    var doctor: Int = 0 //
+    var food: String ="" //добавить
+    var title: String = "" //
+    var timeCheckSymptom = "" //
+    var timeHealthNotification = "" //
+    var notification = "" //
     var date = ""
     var descr = ""
-    var diagnosisSymptomID: Int = 0 //!!!
+    var diagnosisSymptomID: Int = 0 //добавить
 
     constructor(email: String, procedure: Int, medicament: Int, doctor: Int,
     food: String, title: String, timeCheckSymptom: String, timeHealthNotification: String, notification: String,

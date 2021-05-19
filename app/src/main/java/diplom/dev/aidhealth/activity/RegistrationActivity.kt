@@ -19,7 +19,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var regFirstNameEdTxt: EditText
     private lateinit var regLastNameEdTxt: EditText
     private lateinit var regUserButton: Button
-
+//TODO: проверка на сущестование емейла в таблице
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -55,6 +55,9 @@ class RegistrationActivity : AppCompatActivity() {
                 Toast.makeText(this, "Слишком короткий пароль", Toast.LENGTH_SHORT).show()
             }
             else if(regPassword.equals(regPasswordCheck, false)){
+                var dbCheckUser = DbUserHandler(context = this)
+                var dataCheckUser = dbCheckUser.readUser(regEmail)
+                if(dataCheckUser.size==0)   {
                 var db = DbUserHandler(context = this)
                 var user = User(regEmail, regPassword, regFirstName, regLastName)
                 //  var db = DbHandler(context = this)
@@ -63,6 +66,11 @@ class RegistrationActivity : AppCompatActivity() {
 
                 val intent = Intent(this@RegistrationActivity, EnterActivity::class.java)
                 startActivity(intent)
+            }
+            else{
+                    Toast.makeText(this, "Учетная запись с данной почтой уже существует", Toast.LENGTH_SHORT).show()
+                }
+
             }
             else {
                 Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show()

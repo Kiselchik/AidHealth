@@ -35,10 +35,11 @@ class PointCourseActivity : AppCompatActivity() {
         var datarecycler = arrayListOf<String>()
         var dataRecyclerId = arrayListOf<Int>()
 
-        textView.text = "${DataRecyclerCourse.courseID}"
+       // textView.text = "${DataRecyclerCourse.courseID}"
 
             for (i in 0..data.size - 1) {
-                datarecycler.add(data.get(i).courseID.toString()+" "+data.get(i).day + " " + data.get(i).time)
+                //TODO: попросить айди и вывести статус
+                datarecycler.add(data.get(i).day + " " + data.get(i).time)
                 // dataRecyclerId.add(data.get(i).t)
             }
           //  DataRecyclerCourse.dataRecycler = dataRecyclerId

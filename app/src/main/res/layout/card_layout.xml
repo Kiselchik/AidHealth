@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary">
+    style="@style/MyCardViewStyle"
+    android:layout_marginBottom="17dp">
 
     <TextView
-        android:id="@+id/textViewPills"
-        android:layout_width="333dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="68dp"
-        android:text="TextView"
+        android:id="@+id/textViewDiagnosis"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/roboto"
+        android:text="Text"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

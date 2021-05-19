@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import diplom.dev.aidhealth.DataRecyclerCourse
+import diplom.dev.aidhealth.User
 import diplom.dev.aidhealth.db.model.Course
 import diplom.dev.aidhealth.db.model.StatusCourse
 
@@ -60,7 +61,7 @@ class DbStatusCourseHandler(var context: Context): SQLiteOpenHelper(context,
         var list: MutableList<StatusCourse> = ArrayList()
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM " + TABLE_NAME_STATUS_COURSE
+        val query = "SELECT * FROM " + TABLE_NAME_STATUS_COURSE + " WHERE email = '${User.email}' "
         try{
             val result = db.rawQuery(query, null)
 

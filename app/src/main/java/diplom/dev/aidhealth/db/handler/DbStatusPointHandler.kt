@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import diplom.dev.aidhealth.User
 import diplom.dev.aidhealth.db.model.StatusCourse
 import diplom.dev.aidhealth.db.model.StatusPoint
 
@@ -54,7 +55,7 @@ class DbStatusPointHandler(var context: Context): SQLiteOpenHelper(context,
         var list: MutableList<StatusPoint> = ArrayList()
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM " + TABLE_NAME_STATUS_POINT
+        val query = "SELECT * FROM " + TABLE_NAME_STATUS_POINT + " WHERE email = '${User.email}' "
         try{
             val result = db.rawQuery(query, null)
 
@@ -101,6 +102,60 @@ class DbStatusPointHandler(var context: Context): SQLiteOpenHelper(context,
                 Toast.makeText(context, "Таблицы не существует", Toast.LENGTH_SHORT).show()
             }
             return list
+    }
+
+    fun getIdStatusPointPostponed(): MutableList<StatusPoint> {
+        var list: MutableList<StatusPoint> = ArrayList()
+        val db = this.readableDatabase
+
+        val query = "SELECT id FROM " + TABLE_NAME_STATUS_POINT + " WHERE title = 'Отложен'"
+        try{
+            val result = db.rawQuery(query, null)
+
+            if (result.moveToFirst()) {
+                do {
+                    var statusPoint = StatusPoint()
+                    statusPoint.id = result.getString(result.getColumnIndex(COL_ID_STATUS_POINT)).toInt()
+                    // statusPoint.title = result.getString(result.getColumnIndex(COL_STATUS_POINT_TITLE))
+
+                    list.add(statusPoint)
+                } while (result.moveToNext())
+            }
+            result.close()
+            db.close()
+
+        }
+        catch(e: Exception) {
+            Toast.makeText(context, "Таблицы не существует", Toast.LENGTH_SHORT).show()
+        }
+        return list
+    }
+
+    fun getIdStatusPointConfirmed(): MutableList<StatusPoint> {
+        var list: MutableList<StatusPoint> = ArrayList()
+        val db = this.readableDatabase
+
+        val query = "SELECT id FROM " + TABLE_NAME_STATUS_POINT + " WHERE title = 'Подтвержден'"
+        try{
+            val result = db.rawQuery(query, null)
+
+            if (result.moveToFirst()) {
+                do {
+                    var statusPoint = StatusPoint()
+                    statusPoint.id = result.getString(result.getColumnIndex(COL_ID_STATUS_POINT)).toInt()
+                    // statusPoint.title = result.getString(result.getColumnIndex(COL_STATUS_POINT_TITLE))
+
+                    list.add(statusPoint)
+                } while (result.moveToNext())
+            }
+            result.close()
+            db.close()
+
+        }
+        catch(e: Exception) {
+            Toast.makeText(context, "Таблицы не существует", Toast.LENGTH_SHORT).show()
+        }
+        return list
     }
 
 

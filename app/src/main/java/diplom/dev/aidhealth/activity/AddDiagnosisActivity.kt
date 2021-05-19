@@ -23,7 +23,7 @@ class AddDiagnosisActivity : AppCompatActivity() {
     private lateinit var symptomDiagnosisRecycler: RecyclerView
     private lateinit var saveNewDiagnosis: Button
     private lateinit var descrDiagnosisEdTxt: EditText
-    private lateinit var textView: TextView
+//    private lateinit var textView: TextView
 
     var chooseDoctor : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,8 +60,8 @@ class AddDiagnosisActivity : AppCompatActivity() {
         spinnerDiagnosisDoctor = findViewById(R.id.spinnerDiagnosisDoctor)
         saveNewDiagnosis = findViewById(R.id.saveNewDiagnosis)
         descrDiagnosisEdTxt = findViewById(R.id.descrDiagnosisEdTxt)
-        textView = findViewById(R.id.textView2)
-        textView.text = DataRecyclerSymptoms.chooseSymptomId.size.toString()
+     //   textView = findViewById(R.id.textViewNewDiagnosis)
+      //  textView.text = DataRecyclerSymptoms.chooseSymptomId.size.toString()
   //      spinnerDiagnosisSymptom = findViewById(R.id.spinnerDiagnosisSymptom)
     }
 
@@ -79,7 +79,7 @@ class AddDiagnosisActivity : AppCompatActivity() {
           var diagnosis = Diagnosis(savedEmail, chooseDoctor, nameNewDiagnosisEdTxt.text.toString(),
                 descrDiagnosisEdTxt.text.toString(), currentDate )
             dbDiagnosis.insertDiagnosis(diagnosis)
-            textView.text = ""
+        //    textView.text = ""
             //получаем id записанного диагноза
           var diagnosisId =   dbDiagnosis.selectDiagnosisMaxID().get(0).id
           //  textView.text = diagnosisId.toString()
@@ -88,7 +88,7 @@ class AddDiagnosisActivity : AppCompatActivity() {
             for(i in 0..DataRecyclerSymptoms.chooseSymptomId.size-1){
 
                 DataRecyclerSymptoms.ID.add(DataRecyclerSymptoms.symptomId.get(DataRecyclerSymptoms.chooseSymptomId.get(i)))
-                textView.text = textView.text.toString() +"\n"+DataRecyclerSymptoms.ID.get(i).toString()
+             //   textView.text = textView.text.toString() +"\n"+DataRecyclerSymptoms.ID.get(i).toString()
                 var diagnosisSymptom = DiagnosisSymptom(DataRecyclerSymptoms.ID.get(i), diagnosisId)
                 dbDiagnosisSymptom.insertDiagnosisSymptom(diagnosisSymptom)
             }

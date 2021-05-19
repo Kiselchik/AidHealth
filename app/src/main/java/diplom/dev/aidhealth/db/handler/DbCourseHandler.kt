@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import diplom.dev.aidhealth.DataRecyclerCourse
+import diplom.dev.aidhealth.User
 import diplom.dev.aidhealth.db.model.Course
 import diplom.dev.aidhealth.db.model.Pill
 
@@ -93,8 +94,9 @@ class DbCourseHandler(var context: Context): SQLiteOpenHelper(context,
         var list: MutableList<Course> = ArrayList()
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM " + TABLE_NAME_COURSE
-        try{
+        val query = "SELECT * FROM " + TABLE_NAME_COURSE + "" +
+                " WHERE email = '${User.email}'  "
+
             val result = db.rawQuery(query, null)
 
             if (result.moveToFirst()) {
@@ -119,11 +121,55 @@ class DbCourseHandler(var context: Context): SQLiteOpenHelper(context,
             result.close()
             db.close()
 
-        }
-        catch(e: Exception) {
-            Toast.makeText(context, "Таблицы не существует", Toast.LENGTH_SHORT).show()
-        }
+
         return list
+    }
+
+    fun readCourseWithNotification(): MutableList<Course> {
+        var list: MutableList<Course> = ArrayList()
+        val db = this.readableDatabase
+
+        val query = "SELECT * FROM " + TABLE_NAME_COURSE + "" +
+                " WHERE email = '${User.email}' AND $COL_COURSE_NOTIFICATION = '1' "
+
+        val result = db.rawQuery(query, null)
+
+        if (result.moveToFirst()) {
+            do {
+                var course = Course()
+                course.id = result.getString(result.getColumnIndex(COL_ID_COURSE)).toInt()
+                course.email = result.getString(result.getColumnIndex(COL_COURSE_EMAIL))
+                course.procedure = result.getString(result.getColumnIndex(COL_COURSE_PROCEDURE)).toInt()
+                course.medicament = result.getString(result.getColumnIndex(COL_COURSE_MEDICAMENT)).toInt()
+                course.doctor = result.getString(result.getColumnIndex(COL_COURSE_DOCTOR)).toInt()
+                course.food = result.getString(result.getColumnIndex(COL_COURSE_FOOD))
+                course.title = result.getString(result.getColumnIndex(COL_COURSE_TITLE))
+                course.timeCheckSymptom = result.getString(result.getColumnIndex(COL_COURSE_TIME_CH_SMPTM))
+                course.timeHealthNotification = result.getString(result.getColumnIndex(COL_CORSE_TIME_CH_HEALTH))
+                course.notification = result.getString(result.getColumnIndex(COL_COURSE_NOTIFICATION))
+                course.date = result.getString(result.getColumnIndex(COL_COURSE_DATE))
+                course.descr = result.getString(result.getColumnIndex(COL_COURSE_DESCR))
+                course.diagnosisSymptomID = result.getString(result.getColumnIndex(COL_COURSE_DIAGNOSIS_SYMPTOM)).toInt()
+                list.add(course)
+            } while (result.moveToNext())
+        }
+        result.close()
+        db.close()
+
+
+        return list
+    }
+
+    fun updateChBox(symptom: String, health: String, notification: String){
+        val db = writableDatabase
+  try{
+        db.execSQL("UPDATE ${TABLE_NAME_COURSE} SET " +
+                "${COL_COURSE_TIME_CH_SMPTM} = ${symptom}, ${COL_CORSE_TIME_CH_HEALTH} = ${health}, " +
+                " ${COL_COURSE_NOTIFICATION} = ${notification}" +
+                "  WHERE ${COL_ID_COURSE} = ${DataRecyclerCourse.courseID}")}
+  catch (e: Exception) {
+      Toast.makeText(context, "Проблемки с обновлением", Toast.LENGTH_SHORT).show()
+  }
     }
 
     fun getOneCourse(): MutableList<Course> {

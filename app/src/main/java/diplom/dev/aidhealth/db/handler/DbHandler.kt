@@ -6,22 +6,21 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import diplom.dev.aidhealth.DataRecyclerCourse
+import diplom.dev.aidhealth.User
 import diplom.dev.aidhealth.db.model.Doctor
 
- const val TABLE_NAME = "Doctors"
+ val TABLE_NAME = "Doctors"
  val COL_ID = "id"
  val COL_DOC_FIRST_NAME = "firstName"
  val COL_DOC_LAST_NAME = "lastName"
  val COL_ADDRESS = "address"
  val COL_POSITION = "position"
-val COL_EMAIL = "email"
-val CREATE_TABLE = "CREATE TABLE IF NOT EXISTS   $TABLE_NAME ("+
+ val COL_EMAIL = "email"
+ val CREATE_TABLE = "CREATE TABLE IF NOT EXISTS   $TABLE_NAME ("+
            "$COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_DOC_FIRST_NAME TEXT, "+
            "$COL_DOC_LAST_NAME TEXT, $COL_ADDRESS TEXT,"+
            "$COL_POSITION TEXT, $COL_EMAIL TEXT, FOREIGN KEY(email) REFERENCES Users(email))"
 
-//const val CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ${DbDoctorClass.TABLE_NAME} ("+
- //       "${BaseColumns._ID} INTEGER PRIMARY KEY, ${DbDoctorClass.COLUMN_DOCTOR_FIRST_NAME_TITLE} TEXT)"
  val SQL_DELETE_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
 
 class DbHandler(var context: Context): SQLiteOpenHelper(context,
@@ -54,6 +53,7 @@ class DbHandler(var context: Context): SQLiteOpenHelper(context,
             //    Toast.makeText(context, "FAILED", Toast.LENGTH_SHORT).show()
            // else
             //    Toast.makeText(context, "SUCCESS", Toast.LENGTH_SHORT).show()
+        db.close()
         }
 
     fun readDoctor(): MutableList<Doctor> {
@@ -61,7 +61,7 @@ class DbHandler(var context: Context): SQLiteOpenHelper(context,
         val db = this.readableDatabase
 
 
-        val query = "SELECT * FROM " + TABLE_NAME
+        val query = "SELECT * FROM " + TABLE_NAME +" WHERE email = '${User.email}' "
         try{
         val result = db.rawQuery(query, null)
 
@@ -125,6 +125,12 @@ class DbHandler(var context: Context): SQLiteOpenHelper(context,
         val db = writableDatabase
         db.execSQL("DELETE FROM ${TABLE_NAME}")
 
+    }
+
+    fun deleteDoctor(docID : Int) {
+        val db = writableDatabase
+        db.execSQL("DELETE FROM ${TABLE_NAME} WHERE $COL_ID = $docID " )
+        db.close()
     }
 
     fun dropDoctorTable(){
